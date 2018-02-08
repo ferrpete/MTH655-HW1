@@ -3,8 +3,10 @@
 % The main file for the FEM 1D method to solve Problem 4 of Homework 1 for
 % MTH 655.
 
-h = 2.^(-[1;2;3]);
-N = length(h);
+clear all
+
+n = [2,4,8];
+N = length(n);
 x = [0:0.001:1]';
 ExactSol = Exact(x);
 
@@ -16,18 +18,22 @@ hold on
 
 for i = 1:N
     
-    [FemSol, x] = SimpleFEM1D(h(i));
+    [FemSol, x] = SimpleFEM1D(n(i));
     ExactSol = Exact(x');
-    error(i) = norm(FemSol-ExactSol, inf);
+    error(i) = norm(ExactSol-FemSol, inf);
     plot(x,FemSol,'-o')
     
 end
+
+a = 0; % left endpoint
+b = 1; % right endpoint
+h = (b-a)./n; % uniform mesh size
 
 legend('Exact', 'h = 0.5', 'h = 0.25', 'h = 0.125')
 hold off
 
 figure(2)
-loglog(h,h.^2,'k-',h,error,'*-r')
+loglog(h,h,'b-',h,h.^2,'k-',h,error,'*-r')
 xlabel('Mesh size, h')
 ylabel('Max Norm Error, e(h)')
-legend('Quadratic', 'Linear FEM Error')
+legend('Linear', 'Quadratic', 'Linear FEM Error')

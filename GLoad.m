@@ -13,7 +13,7 @@ F = zeros(N+1,1);
 for i = 1:N
     h = x(i+1) - x(i);
     n = [i, i+1];
-    F(n) = F(n) + [feval(@Loadf,x(i)); feval(@Loadf,x(i+1))]*h/2;
+    F(n) = F(n) + [feval(@Loadf,x(i)); feval(@Loadf,x(i+1))]*(h/2);
     
 end
 
