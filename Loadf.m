@@ -7,6 +7,7 @@ function f = Loadf(x)
 % ===Input = x, mesh nodes at which to evaluate the load function f
 % ===Output = f, value of load f at x
 
-f = (pi^2)*sin(pi*x);
+% f = (pi^2)*sin(pi*x);
+f = 1;
 
 end
